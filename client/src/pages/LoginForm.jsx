@@ -17,7 +17,7 @@ const LoginForm = () => {
 
   return (
     <div className={`${darkMode ? 'dark' : ''}`}>
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-800 via-blue-600 to-teal-400 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 p-4">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
         <div className="absolute top-4 right-4 flex items-center">
           <button
             onClick={toggleDarkMode}
@@ -36,7 +36,7 @@ const LoginForm = () => {
                 type="email"
                 id="email"
                 name="email"
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 dark:focus:ring-indigo-900 focus:border-indigo-300 dark:focus:border-indigo-600"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring focus:ring-blue-200 dark:focus:ring-blue-700 focus:border-blue-400 dark:focus:border-blue-500"
                 placeholder="Enter your email"
               />
             </div>
@@ -46,14 +46,14 @@ const LoginForm = () => {
                 type="password"
                 id="password"
                 name="password"
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 dark:focus:ring-indigo-900 focus:border-indigo-300 dark:focus:border-indigo-600"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring focus:ring-blue-200 dark:focus:ring-blue-700 focus:border-blue-400 dark:focus:border-blue-500"
                 placeholder="Enter your password"
               />
             </div>
-              <div className="mb-6 text-center">
+            <div className="mb-6 text-center">
               <a
                 href="#"
-                className="text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-500 focus:text-indigo-600 dark:focus:text-indigo-500 focus:outline-none"
+                className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-500 focus:text-blue-600 dark:focus:text-blue-500 focus:outline-none"
               >
                 Forgot password?
               </a>
@@ -61,23 +61,23 @@ const LoginForm = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="bg-indigo-500 dark:bg-indigo-600 text-white px-12 py-2 rounded-full hover:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none focus:bg-indigo-600 dark:focus:bg-indigo-700"
+                className="bg-blue-500 dark:bg-blue-600 text-white px-12 py-2 rounded-full hover:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none focus:bg-blue-600 dark:focus:bg-blue-700"
               >
                 Login
               </button>
             </div>
             <div className="mt-6 text-center">
               <a
-              href="#"
-              className="text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-500 focus:text-indigo-600 dark:focus:text-indigo-500 focus:outline-none"
+                href="#"
+                className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-500 focus:text-blue-600 dark:focus:text-blue-500 focus:outline-none"
               >
-              Contact Us
+                Contact Us
               </a>
-            </div> 
-            </form>
-        </div>
+            </div>
+          </form>
         </div>
       </div>
+    </div>
   );
 };
 
