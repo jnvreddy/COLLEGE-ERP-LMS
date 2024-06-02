@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (darkMode) {
@@ -13,6 +17,17 @@ const LoginForm = () => {
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Simulate login
+    if (email === 'user@example.com' && password === 'password') {
+      // Redirect to profile page on successful login
+      navigate('/profile');
+    } else {
+      alert('Invalid credentials');
+    }
   };
 
   return (
@@ -29,15 +44,17 @@ const LoginForm = () => {
         <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-white">College</h1>
         <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">Login</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-bold mb-2">Email</label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring focus:ring-blue-200 dark:focus:ring-blue-700 focus:border-blue-400 dark:focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring focus:ring-blue-200 dark:focus:ring-blue-700 focus:border-blue-400 dark:focus:border-blue-500"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="mb-4">
@@ -46,8 +63,10 @@ const LoginForm = () => {
                 type="password"
                 id="password"
                 name="password"
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring focus:ring-blue-200 dark:focus:ring-blue-700 focus:border-blue-400 dark:focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring focus:ring-blue-200 dark:focus:ring-blue-700 focus:border-blue-400 dark:focus:border-blue-500"
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="mb-6 text-center">
