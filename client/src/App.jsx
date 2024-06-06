@@ -1,21 +1,21 @@
+// src/App.js
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
 import Profile from './pages/Profile';
-import Header from './components/Headnav';
-import PrivateRoute from './components/PrivateRoute';
-import SignIn from './pages/SignIn';
+import Headnav from './components/Headnav';
+import AdminRoute from './components/AdminRoute';
+import Login from './pages/login';
+import SignUp from './pages/SignUp';
+import AdminDashboard from './pages/admin/AdminDashboard'; // Add your admin-specific page
 
 export default function App() {
   return (
     <BrowserRouter>
-      {/* header */}
-      <Header />
+      <Headnav />
       <Routes>
-        <Route path='/sign-in' element={<SignIn />} />
-        <Route element={<PrivateRoute />}>
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
+        <Route path='*' element={<Login />} />
+        <Route path='/sign-up' element={<SignUp />} />
+        <Route element={<AdminRoute />}>
+          <Route path='/' element={<AdminDashboard />} />
           <Route path='/profile' element={<Profile />} />
         </Route>
       </Routes>
