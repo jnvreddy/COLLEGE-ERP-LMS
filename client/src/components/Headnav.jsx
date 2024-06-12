@@ -21,18 +21,18 @@ export default function Headnav() {
 
   return (
     <nav className="bg-gray-200 fixed top-0 w-full z-10">
-      <div className="container flex items-center justify-between py-1">
+      <div className="relative h-14 flex items-center justify-between px-4">
         <div className="flex items-center">
           <button className="text-gray-700" onClick={toggleMenu} aria-label="Toggle navigation">
             <span className="material-icons">menu</span>
           </button>
-          <Link className="text-xl font-bold px-3" to="/">College-ERP-LMS</Link>
+          <Link className="text-xl font-bold px-3" to="/">College-ERP</Link>
         </div>
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center ">
           <form className="flex items-center">
             <input className="form-input rounded-full px-2 py-1 text-center" type="search" placeholder="Search" aria-label="Search" />
             <button type="submit" className="p-2">
-              <span className="material-icons">search</span>
+              <span className="material-icons">S</span>
             </button>
           </form>
           <button className="text-gray-700 p-2">
@@ -52,7 +52,7 @@ export default function Headnav() {
           </div>
         </div>
       </div>
-      
+
       {/* Offcanvas Menu */}
       <div className={`fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`}>
         <div className="p-4 flex items-center justify-between">
@@ -62,17 +62,49 @@ export default function Headnav() {
           </button>
         </div>
         <ul className="flex flex-col p-4 space-y-2">
-          <li>
-            <Link className="nav-link active" aria-current="page" to="/" onClick={toggleMenu}>Home</Link>
-          </li>
-          <li>
-            <Link className="nav-link" to="/about" onClick={toggleMenu}>About</Link>
-          </li>
-          <li>
-            <Link className="nav-link" to="/profile" onClick={toggleMenu}>Profile</Link>
-          </li>
+          {currentUser.role === 'admin' && (
+            <>
+              <li>
+                <Link className="nav-link" to="/admin/dashboard" onClick={toggleMenu}>Dashboard</Link>
+              </li>
+              <li>
+                <Link className="nav-link" to="/admin/users" onClick={toggleMenu}>Manage Users</Link>
+              </li>
+              <li>
+                <Link className="nav-link" to="/admin/profile" onClick={toggleMenu}>Profile</Link>
+              </li>
+            </>
+          )}
+          {currentUser.role === 'faculty' && (
+            <>
+              <li>
+                <Link className="nav-link" to="/faculty/courses" onClick={toggleMenu}>My Courses</Link>
+              </li>
+              <li>
+                <Link className="nav-link" to="/faculty/schedule" onClick={toggleMenu}>Schedule</Link>
+              </li>
+              <li>
+                <Link className="nav-link" to="/faculty/profile" onClick={toggleMenu}>Profile</Link>
+              </li>
+            </>
+          )}
+          {currentUser.role === 'student' && (
+            <>
+              <li>
+                <Link className="nav-link" to="/student/courses" onClick={toggleMenu}>My Courses</Link>
+              </li>
+              <li>
+                <Link className="nav-link" to="/student/schedule" onClick={toggleMenu}>Schedule</Link>
+              </li>
+              <li>
+                <Link className="nav-link" to="/student/profile" onClick={toggleMenu}>Profile</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>
   );
 }
+
+ 

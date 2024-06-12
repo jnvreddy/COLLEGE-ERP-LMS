@@ -1,10 +1,9 @@
-// src/redux/slices/userSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   currentUser: null,
   loading: false,
-  error: false,
+  error: null, // Changed from false to null for consistency in error handling
 };
 
 const userSlice = createSlice({
@@ -13,11 +12,12 @@ const userSlice = createSlice({
   reducers: {
     loginStart: (state) => {
       state.loading = true;
+      state.error = null;
     },
     loginSuccess: (state, action) => {
       state.currentUser = action.payload;
       state.loading = false;
-      state.error = false;
+      state.error = null;
     },
     loginFailure: (state, action) => {
       state.loading = false;
@@ -25,11 +25,12 @@ const userSlice = createSlice({
     },
     updateUserStart: (state) => {
       state.loading = true;
+      state.error = null;
     },
     updateUserSuccess: (state, action) => {
       state.currentUser = action.payload;
       state.loading = false;
-      state.error = false;
+      state.error = null;
     },
     updateUserFailure: (state, action) => {
       state.loading = false;
@@ -37,11 +38,12 @@ const userSlice = createSlice({
     },
     deleteUserStart: (state) => {
       state.loading = true;
+      state.error = null;
     },
     deleteUserSuccess: (state) => {
       state.currentUser = null;
       state.loading = false;
-      state.error = false;
+      state.error = null;
     },
     deleteUserFailure: (state, action) => {
       state.loading = false;
@@ -50,7 +52,10 @@ const userSlice = createSlice({
     signOut: (state) => {
       state.currentUser = null;
       state.loading = false;
-      state.error = false;
+      state.error = null;
+    },
+    clearError: (state) => {
+      state.error = null;
     },
   },
 });
@@ -66,6 +71,7 @@ export const {
   deleteUserStart,
   deleteUserSuccess,
   signOut,
+  clearError, // Exporting the new action
 } = userSlice.actions;
 
 export default userSlice.reducer;

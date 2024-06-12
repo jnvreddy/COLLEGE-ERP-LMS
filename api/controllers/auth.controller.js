@@ -31,7 +31,7 @@ export const login = async (req, res, next) => {
 
     const expiryDate = new Date(Date.now() + 3600000); // 1 hour
     res
-      .cookie('access_token', token, { httpOnly: true, expires: expiryDate })
+      .cookie('access_token', token, { httpOnly: true, expires: expiryDate, sameSite: 'None', secure: true }) // Set SameSite and Secure attributes
       .status(200)
       .json({ ...rest, role }); // Include role in the response
   } catch (error) {
