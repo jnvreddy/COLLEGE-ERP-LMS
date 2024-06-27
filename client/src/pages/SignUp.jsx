@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
+=======
+/*import { useState, useEffect } from 'react';
+>>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
@@ -111,4 +115,8 @@ export default function SignUp() {
       </div>
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}*/
+>>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)

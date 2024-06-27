@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+//api/controllers/user.controller.js
+>>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)
 import User from '../models/user.model.js';
 import { errorHandler } from '../utils/error.js';
 import bcryptjs from 'bcryptjs';
@@ -53,4 +57,12 @@ export const deleteUser = async (req, res, next) => {
     next(error);
   }
 
+<<<<<<< HEAD
 }
+=======
+}
+
+export const signout = (req, res) => {
+  res.clearCookie('access_token').status(200).json('Signout success!');
+};
+>>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)

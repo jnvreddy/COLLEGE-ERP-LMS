@@ -68,7 +68,11 @@ export default function Headnav() {
                 <Link className="nav-link" to="/admin/dashboard" onClick={toggleMenu}>Dashboard</Link>
               </li>
               <li>
+<<<<<<< HEAD
                 <Link className="nav-link" to="/admin/users" onClick={toggleMenu}>Manage Users</Link>
+=======
+                <Link className="nav-link" to="/admin/manageusers" onClick={toggleMenu}>Manage Users</Link>
+>>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)
               </li>
               <li>
                 <Link className="nav-link" to="/admin/profile" onClick={toggleMenu}>Profile</Link>

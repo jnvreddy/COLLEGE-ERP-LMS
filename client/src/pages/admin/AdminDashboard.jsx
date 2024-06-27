@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // src/pages/AdminDashboard.js
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -61,3 +62,13 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+=======
+// src/pages/faculty/FacultyDashboard.js
+import React from 'react';
+
+const FacultyDashboard = () => {
+  return <div>Faculty Dashboard</div>;
+};
+
+export default FacultyDashboard;
+>>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)

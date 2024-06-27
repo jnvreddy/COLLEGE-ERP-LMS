@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+//api/routes/user.route.js
+>>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)
 import express from 'express';
 import {
   test,

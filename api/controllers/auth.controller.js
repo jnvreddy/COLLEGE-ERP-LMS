@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+//api/controllers/auth.controller.js
+>>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)
 import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
 import { errorHandler } from '../utils/error.js';

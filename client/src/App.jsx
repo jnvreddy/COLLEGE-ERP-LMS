@@ -6,13 +6,22 @@ import AdminRoute from './components/AdminRoute';
 import FacultyRoute from './components/FacultyRoute';
 import StudentRoute from './components/StudentRoute';
 import Login from './pages/Login.jsx';
+<<<<<<< HEAD
 import SignUp from './pages/SignUp.jsx';
+=======
+
+>>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)
 import AdminDashboard from './pages/admin/AdminDashboard.jsx';
 import FacultyDashboard from './pages/faculty/FacultyDashboard.jsx';
 import StudentDashboard from './pages/student/StudentDashboard.jsx';
 import AdminProfile from './pages/admin/AdminProfile.jsx';
 import FacultyProfile from './pages/faculty/FacultyProfile.jsx';
 import StudentProfile from './pages/student/StudentProfile.jsx';
+<<<<<<< HEAD
+=======
+import AdminHome from './pages/admin/AdminHome.jsx';
+import ManageUsers from './pages/admin/ManageUsers.jsx';
+>>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)
 
 function MainApp() {
   const { currentUser } = useSelector((state) => state.user);
@@ -27,9 +36,16 @@ function MainApp() {
       <Routes>
         <Route path="*" element={<Navigate to="/login" replace />} /> {/* Default route: redirect to Login on invalid paths */}
         <Route path="/login" element={<Login />} />
+<<<<<<< HEAD
         <Route path="/sign-up" element={<SignUp />} />
         <Route element={<AdminRoute />}>
           <Route path="/admin" element={<AdminDashboard />} />
+=======
+        <Route element={<AdminRoute />}>
+          <Route path="/admin" element={<AdminHome/>} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/manageusers" element={<ManageUsers />} />
+>>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)
           <Route path="/admin/profile" element={<AdminProfile />} />
         </Route>
         <Route element={<FacultyRoute />}>
