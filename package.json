@@ -17,11 +17,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-<<<<<<< HEAD
-    "mongoose": "^8.4.1",
-=======
     "mongoose": "^8.4.3",
->>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)
     "nodemon": "^3.1.2"
   }
 }

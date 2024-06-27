@@ -1,13 +1,12 @@
-<<<<<<< HEAD
-=======
+
+
 //api/controllers/auth.controller.js
->>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)
 import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
 import { errorHandler } from '../utils/error.js';
 import jwt from 'jsonwebtoken';
 
-export const signup = async (req, res, next) => {
+/*export const signup = async (req, res, next) => {
   const { username, email, password, role } = req.body;
   const hashedPassword = bcryptjs.hashSync(password, 10);
   const newUser = new User({ username, email, password: hashedPassword, role });
@@ -17,7 +16,7 @@ export const signup = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+};*/
 
 
 export const login = async (req, res, next) => {

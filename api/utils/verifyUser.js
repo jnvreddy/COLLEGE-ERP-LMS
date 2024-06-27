@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-=======
+
 //api/utlis/verifyUser.js
->>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)
+
 import jwt from 'jsonwebtoken';
 import { errorHandler } from './error.js';
 
