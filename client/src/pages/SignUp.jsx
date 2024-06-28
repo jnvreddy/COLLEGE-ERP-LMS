@@ -113,8 +113,4 @@ export default function SignUp() {
       </div>
     </div>
   );
-<<<<<<< HEAD
-}
-=======
 }*/
->>>>>>> b57ab5b (admin home page and funcunality to add users by admin in progress)

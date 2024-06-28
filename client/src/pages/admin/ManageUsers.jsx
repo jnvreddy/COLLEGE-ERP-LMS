@@ -7,6 +7,8 @@ const ManageUsers = () => {
   const [deleteEmail, setDeleteEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [studentSuccess, setStudentSuccess] = useState(null);
+  const [facultySuccess, setFacultySuccess] = useState(null);
   const navigate = useNavigate();
 
   const handleChangeStudent = (e) => {
@@ -21,11 +23,13 @@ const ManageUsers = () => {
     setDeleteEmail(e.target.value);
   };
 
+
   const handleSubmitStudent = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
       setError(null);
+      setStudentSuccess(null); // Clear success message before request
       const res = await fetch('/api/admin/addStudent', {
         method: 'POST',
         headers: {
@@ -38,7 +42,7 @@ const ManageUsers = () => {
       if (!res.ok) {
         throw new Error(data.message || 'Something went wrong!');
       }
-      navigate('/success');
+      setStudentSuccess('Student added successfully!'); // Set success message
     } catch (error) {
       setLoading(false);
       setError(error.message);
@@ -50,7 +54,8 @@ const ManageUsers = () => {
     try {
       setLoading(true);
       setError(null);
-      const res = await fetch('/api/admin/addFaculty', {
+      setFacultySuccess(null); 
+      const res = await fetch('/api/admin/deleteStudentByEmail', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -62,31 +67,37 @@ const ManageUsers = () => {
       if (!res.ok) {
         throw new Error(data.message || 'Something went wrong!');
       }
-      navigate('/success');
+      setFacultySuccess('Faculty added successfully!');
     } catch (error) {
       setLoading(false);
       setError(error.message);
     }
   };
 
+
+
   const handleDeleteUser = async (e, role) => {
     e.preventDefault();
     try {
       setLoading(true);
       setError(null);
-      const res = await fetch(`/api/auth/delete-${role}`, {
+      const res = await fetch('/api/admin/delete-user', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: deleteEmail }),
+        body: JSON.stringify({ email: deleteEmail, role }),
       });
       const data = await res.json();
       setLoading(false);
       if (!res.ok) {
         throw new Error(data.message || 'Something went wrong!');
       }
-      navigate('/success');
+      if (role === 'student') {
+        setStudentSuccess('Student deleted successfully!');
+      } else {
+        setFacultySuccess('Faculty deleted successfully!');
+      }
     } catch (error) {
       setLoading(false);
       setError(error.message);
@@ -94,11 +105,10 @@ const ManageUsers = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-100 p-4 sm:p-6 md:p-8">
-      <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Registration</h1>
+    <div className="min-h-screen flex space-x-12 items-center justify-center bg-gray-100 p-4 sm:p-6 md:p-8">
 
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6 sm:p-8 md:p-10 mb-10">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Add Student</h2>
+        <h2 className="text-2xl font-bold text-gray-800 mb-6 md:text-center">Add Student</h2>
         <form onSubmit={handleSubmitStudent} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="relative">
             <label htmlFor="studentFullName" className="block text-sm font-medium text-gray-700">Full Name</label>
@@ -190,7 +200,13 @@ const ManageUsers = () => {
             </button>
           </div>
         </form>
-        <div className="relative mt-4">
+        {error && (
+            <p className="text-red-600 text-center mt-4">{error}</p>
+          )}
+          {studentSuccess && (
+            <p className="text-green-600 text-center mt-4">{studentSuccess}</p>
+          )}
+         <div className="relative mt-4">
           <label htmlFor="deleteStudentEmail" className="block text-sm font-medium text-gray-700">Delete Student by Email</label>
           <input
             type="email"
@@ -202,15 +218,16 @@ const ManageUsers = () => {
           />
           <button
             onClick={(e) => handleDeleteUser(e, 'student')}
-            className="w-full py-3 mt-2 bg-red-600 text-white rounded-full border-2 border-red-600 hover:bg-red-700 hover:border-red-700 focus:outline-none focus:bg-red-700 focus:border-red-700 disabled:opacity-80 shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+            disabled={loading}
+            className="w-full py-3 bg-red-600 text-white rounded-full border-2 border-red-600 hover:bg-red-700 hover:border-red-700 focus:outline-none focus:bg-red-700 focus:border-red-700 disabled:opacity-80 shadow-md transition duration-300 ease-in-out transform hover:scale-105 mt-2"
           >
-            Delete Student
+            {loading ? 'Loading...' : 'Delete Student'}
           </button>
         </div>
       </div>
 
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6 sm:p-8 md:p-10">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Add Faculty</h2>
+      <div className="w-full max-w-md  bg-white rounded-lg shadow-lg p-6 sm:p-8 md:p-10">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6 md:text-center">Add Faculty</h2>
         <form onSubmit={handleSubmitFaculty} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="relative">
             <label htmlFor="facultyFullName" className="block text-sm font-medium text-gray-700">Full Name</label>
@@ -223,7 +240,7 @@ const ManageUsers = () => {
             />
           </div>
           <div className="relative">
-            <label htmlFor="facultyid" className="block text-sm font-medium text-gray-700">Register Number</label>
+            <label htmlFor="facultyid" className="block text-sm font-medium text-gray-700">Faculty ID</label>
             <input
               type="text"
               id="facultyid"
@@ -282,7 +299,13 @@ const ManageUsers = () => {
             </button>
           </div>
         </form>
-        <div className="relative mt-4">
+        {error && (
+            <p className="text-red-600 text-center mt-4">{error}</p>
+        )}
+        {facultySuccess && (
+            <p className="text-green-600 text-center mt-4">{facultySuccess}</p>
+          )}
+   <div className="relative mt-4">
           <label htmlFor="deleteFacultyEmail" className="block text-sm font-medium text-gray-700">Delete Faculty by Email</label>
           <input
             type="email"
@@ -292,18 +315,16 @@ const ManageUsers = () => {
             value={deleteEmail}
             onChange={handleChangeDeleteEmail}
           />
-          <button
+           <button
             onClick={(e) => handleDeleteUser(e, 'faculty')}
-            className="w-full py-3 mt-2 bg-red-600 text-white rounded-full border-2 border-red-600 hover:bg-red-700 hover:border-red-700 focus:outline-none focus:bg-red-700 focus:border-red-700 disabled:opacity-80 shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+            disabled={loading}
+            className="w-full py-3 bg-red-600 text-white rounded-full border-2 border-red-600 hover:bg-red-700 hover:border-red-700 focus:outline-none focus:bg-red-700 focus:border-red-700 disabled:opacity-80 shadow-md transition duration-300 ease-in-out transform hover:scale-105 mt-2"
           >
-            Delete Faculty
+            {loading ? 'Loading...' : 'Delete Faculty'}
           </button>
         </div>
       </div>
 
-      {error && (
-        <p className="text-red-600 text-center mt-4">{error}</p>
-      )}
     </div>
   );
 };

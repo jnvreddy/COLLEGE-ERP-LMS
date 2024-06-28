@@ -1,11 +1,13 @@
 
 import express from 'express';
-import { addFaculty,addStudent,deleteFacultyByEmail,deleteStudentByEmail } from '../controllers/admin.controller.js';
+import { addFaculty,addStudent,deleteUserByEmail} from '../controllers/admin.controller.js';
 
 const router = express.Router();
 
-router.post('/addstudent', addStudent);
-router.post('/addfaculty', addFaculty);
+router.post('/addStudent', addStudent);
+router.post('/addFaculty', addFaculty);
+router.delete('/delete-user', deleteUserByEmail);
+
 
 
 export default router;

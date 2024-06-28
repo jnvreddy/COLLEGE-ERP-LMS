@@ -65,6 +65,9 @@ export default function Headnav() {
           {currentUser.role === 'admin' && (
             <>
               <li>
+                <Link className="nav-link" to="/admin" onClick={toggleMenu}>Home</Link>
+              </li>
+              <li>
                 <Link className="nav-link" to="/admin/dashboard" onClick={toggleMenu}>Dashboard</Link>
               </li>
               <li>

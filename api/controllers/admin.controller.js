@@ -7,8 +7,8 @@ import jwt from 'jsonwebtoken';
 // Add Student
 export const addStudent = async (req, res, next) => {
     const { studentFullName, studentRegisterNumber, studentPhoneNumber, studentEmail, studentDepartment, studentYear, studentSemester, password } = req.body;
-    try {
-      const hashedPassword = bcrypt.hashSync(password, 10); // Hash the provided password
+  
+      const hashedPassword = bcryptjs.hashSync(password, 10); // Hash the provided password
       const newStudent = new StudentModel({
         username: studentFullName,
         registernumber: studentRegisterNumber,
@@ -19,6 +19,7 @@ export const addStudent = async (req, res, next) => {
         semester: studentSemester,
         password: hashedPassword,
       });
+      try {
       await newStudent.save();
       res.status(201).json({ message: 'Student added successfully' });
     } catch (error) {
@@ -30,8 +31,8 @@ export const addStudent = async (req, res, next) => {
   // Add Faculty
   export const addFaculty = async (req, res, next) => {
     const { facultyFullName, facultyid, facultyPhoneNumber, facultyEmail, facultyDepartment, password } = req.body;
-    try {
-      const hashedPassword = bcrypt.hashSync(password, 10); // Hash the provided password
+   
+      const hashedPassword = bcryptjs.hashSync(password, 10); // Hash the provided password
       const newFaculty = new FacultyModel({
         username: facultyFullName,
         facultyid,
@@ -40,6 +41,7 @@ export const addStudent = async (req, res, next) => {
         department: facultyDepartment,
         password: hashedPassword,
       });
+      try {
       await newFaculty.save();
       res.status(201).json({ message: 'Faculty added successfully' });
     } catch (error) {
@@ -47,33 +49,24 @@ export const addStudent = async (req, res, next) => {
     }
   };
   
-  export const deleteStudentByEmail = async (req, res, next) => {
-    const { email } = req.body;
+  export const deleteUserByEmail = async (req, res, next) => {
+    const { email, role } = req.body;
   
     try {
-      const deletedStudent = await StudentModel.findOneAndDelete({ email });
-  
-      if (!deletedStudent) {
-        return res.status(404).json({ message: 'Student not found' });
+      let deletedUser;
+      if (role === 'student') {
+        deletedUser = await StudentModel.findOneAndDelete({ email });
+      } else if (role === 'faculty') {
+        deletedUser = await FacultyModel.findOneAndDelete({ email });
+      } else {
+        return res.status(400).json({ message: 'Invalid role specified' });
       }
   
-      res.status(200).json({ message: 'Student deleted successfully' });
-    } catch (error) {
-      next(error);
-    }
-  };
-  
-  export const deleteFacultyByEmail = async (req, res, next) => {
-    const { email } = req.body;
-  
-    try {
-      const deletedFaculty = await FacultyModel.findOneAndDelete({ email });
-  
-      if (!deletedFaculty) {
-        return res.status(404).json({ message: 'Faculty not found' });
+      if (!deletedUser) {
+        return res.status(404).json({ message: `${role.charAt(0).toUpperCase() + role.slice(1)} not found` });
       }
   
-      res.status(200).json({ message: 'Faculty deleted successfully' });
+      res.status(200).json({ message: `${role.charAt(0).toUpperCase() + role.slice(1)} deleted successfully` });
     } catch (error) {
       next(error);
     }
