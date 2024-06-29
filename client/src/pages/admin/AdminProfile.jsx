@@ -233,9 +233,12 @@ export default function FacultyProfile() {
         </div>
       </form>
       <div className="flex justify-between mt-5">
-        <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
-          Sign out
-        </span>
+        <button
+          onClick={handleSignOut}
+          className="block w-full bg-red-700 text-white p-3 rounded-md"
+        >
+          Log out
+        </button>
       </div>
       <p className="text-red-700 mt-5">{error && 'Something went wrong!'}</p>
       <p className="text-green-700 mt-5">

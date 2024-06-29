@@ -32,8 +32,8 @@ export default function Headnav() {
           <form className="flex items-center">
             <input className="form-input rounded-full px-2 py-1 text-center" type="search" placeholder="Search" aria-label="Search" />
             <button type="submit" className="p-2">
-              <span className="material-icons">S</span>
-            </button>
+        <span className="material-icons style={{ fontSize: '1.9rem' }}">search</span>
+      </button>
           </form>
           <button className="text-gray-700 p-2">
             <span className="material-icons">notifications</span>

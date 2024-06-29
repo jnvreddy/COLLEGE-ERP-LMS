@@ -238,7 +238,7 @@ export default function FacultyProfile() {
           onClick={handleSignOut}
           className="block w-full bg-red-700 text-white p-3 rounded-md"
         >
-          Sign out
+          log out
         </button>
       </div>
       <p className="text-red-700 mt-5">{error && 'Something went wrong!'}</p>

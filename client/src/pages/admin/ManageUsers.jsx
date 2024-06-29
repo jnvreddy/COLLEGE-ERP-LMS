@@ -24,6 +24,7 @@ const ManageUsers = () => {
   };
 
 
+
   const handleSubmitStudent = async (e) => {
     e.preventDefault();
     try {
@@ -55,7 +56,7 @@ const ManageUsers = () => {
       setLoading(true);
       setError(null);
       setFacultySuccess(null); 
-      const res = await fetch('/api/admin/deleteStudentByEmail', {
+      const res = await fetch('/api/admin/addFaculty', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
