@@ -81,6 +81,9 @@ export default function Headnav() {
           {currentUser.role === 'faculty' && (
             <>
               <li>
+                <Link className="nav-link" to="/faculty" onClick={toggleMenu}>Home</Link>
+              </li>
+              <li>
                 <Link className="nav-link" to="/faculty/courses" onClick={toggleMenu}>My Courses</Link>
               </li>
               <li>
@@ -93,6 +96,9 @@ export default function Headnav() {
           )}
           {currentUser.role === 'student' && (
             <>
+              <li>
+                <Link className="nav-link" to="/faculty" onClick={toggleMenu}>Home</Link>
+              </li>
               <li>
                 <Link className="nav-link" to="/student/courses" onClick={toggleMenu}>My Courses</Link>
               </li>
