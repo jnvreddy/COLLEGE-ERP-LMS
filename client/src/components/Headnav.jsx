@@ -87,6 +87,12 @@ export default function Headnav() {
                 <Link className="nav-link" to="/faculty/courses" onClick={toggleMenu}>My Courses</Link>
               </li>
               <li>
+                <Link className="nav-link" to="/faculty/timetabel" onClick={toggleMenu}>Time Table</Link>
+              </li>
+              <li>
+                <Link className="nav-link" to="/faculty/attendance" onClick={toggleMenu}>Attendance</Link>
+              </li>
+              <li>
                 <Link className="nav-link" to="/faculty/schedule" onClick={toggleMenu}>Schedule</Link>
               </li>
               <li>

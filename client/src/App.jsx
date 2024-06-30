@@ -16,6 +16,7 @@ import AdminHome from './pages/admin/AdminHome.jsx';
 import ManageUsers from './pages/admin/ManageUsers.jsx';
 import FacultyHome from './pages/faculty/facultyHome.jsx';
 import StudentHome from './pages/student/StudentHome.jsx';
+import Attendance from './components/Attendance.jsx';
 
 function MainApp() {
   const { currentUser } = useSelector((state) => state.user);
@@ -39,6 +40,7 @@ function MainApp() {
         <Route element={<FacultyRoute />}>
           <Route path="/faculty" element={<FacultyHome />} />
           <Route path="/faculty/dashboard" element={<FacultyDashboard />} />
+          <Route path="/faculty/attendance" element={<Attendance />} />
           <Route path="/faculty/profile" element={<FacultyProfile />} />
         </Route>
         <Route element={<StudentRoute />}>
